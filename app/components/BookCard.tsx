@@ -71,7 +71,7 @@ export default function BookCard({ book, onUpdateStatus, onDelete, onEdit }: Boo
             className="text-gray-400 hover:text-red-500 transition-colors"
             title="Delete"
           >
-            <Image src="/edit.png" width={20} height={20} alt="Edit" ></Image>
+            <Image src="/delete.png" width={20} height={20} alt="Edit" ></Image>
 
           </button>
         </div>
