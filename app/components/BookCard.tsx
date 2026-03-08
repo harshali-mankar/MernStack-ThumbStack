@@ -1,6 +1,6 @@
 import { IBook } from "@/app/interfaces/Book";
 import { useState } from "react";
-
+import Image from "next/image";
 interface BookCardProps {
   book: IBook;
   onUpdateStatus: (id: string, status: string) => Promise<void>;
@@ -10,7 +10,7 @@ interface BookCardProps {
 
 export default function BookCard({ book, onUpdateStatus, onDelete, onEdit }: BookCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   const statusColors = {
     'Want to Read': 'bg-gray-100 text-gray-800',
     'Reading': 'bg-blue-50 text-blue-700',
@@ -33,9 +33,9 @@ export default function BookCard({ book, onUpdateStatus, onDelete, onEdit }: Boo
           {book.status}
         </span>
       </div>
-      
+
       <p className="text-gray-600 mb-4 font-light">{book.author}</p>
-      
+
       {book.tags && book.tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-6">
           {book.tags.map(tag => (
@@ -47,7 +47,7 @@ export default function BookCard({ book, onUpdateStatus, onDelete, onEdit }: Boo
       )}
 
       <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
-        <select 
+        <select
           value={book.status}
           onChange={(e) => onUpdateStatus(book._id, e.target.value)}
           className="text-sm bg-transparent font-medium text-gray-600 outline-none cursor-pointer hover:text-gray-900"
@@ -56,22 +56,23 @@ export default function BookCard({ book, onUpdateStatus, onDelete, onEdit }: Boo
           <option value="Reading">Reading</option>
           <option value="Completed">Completed</option>
         </select>
-        
+
         <div className="flex space-x-3 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button 
+          <button
             onClick={() => onEdit(book)}
             className="text-gray-400 hover:text-black transition-colors"
             title="Edit"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+            <Image src="/edit.png" width={20} height={20} alt="Edit" ></Image>
           </button>
-          <button 
+          <button
             onClick={handleDelete}
             disabled={isDeleting}
             className="text-gray-400 hover:text-red-500 transition-colors"
             title="Delete"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            <Image src="/edit.png" width={20} height={20} alt="Edit" ></Image>
+
           </button>
         </div>
       </div>
